@@ -21,13 +21,13 @@
     <!--</insert>-->
 
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="stuId" parameterType="com.cyh.shardingtest.model.Student">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="studentId" parameterType="com.cyh.shardingtest.model.Student">
         INSERT INTO t_student (
           name,age,hobby,city_id
         )
         VALUES (
 
-        #{name,jdbcType=INTEGER},
+        #{name,jdbcType=VARCHAR},
         #{age,jdbcType=SMALLINT},
         #{hobby,jdbcType=VARCHAR},
         #{cityId,jdbcType=INTEGER}

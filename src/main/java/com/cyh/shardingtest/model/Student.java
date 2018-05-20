@@ -6,10 +6,18 @@ public class Student {
     private String name;
     private short age;
     private String hobby;
-    private long stuId;
+    private long studentId;
     private int cityId;
     private boolean sex;
 
+
+    public long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(long studentId) {
+        this.studentId = studentId;
+    }
     public boolean isSex() {
         return sex;
     }
@@ -26,13 +34,7 @@ public class Student {
         this.cityId = cityId;
     }
 
-    public long getStuId() {
-        return stuId;
-    }
 
-    public void setStuId(long stuId) {
-        this.stuId = stuId;
-    }
 
     public String getName() {
         return name;
