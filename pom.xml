@@ -11,13 +11,6 @@
     <name>shardingtest</name>
     <description>shardingtest</description>
 
-    <!--<parent>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-parent</artifactId>-->
-        <!--<version>2.0.2.RELEASE</version>-->
-        <!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-    <!--</parent>-->
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -60,7 +53,35 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.9</version>
+        </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <!-- 只有分库分表 -->
+            <id>sharding</id>
+            <properties>
+                <dir>sharding</dir>
+            </properties>
+            <!--<activation>-->
+                <!--<activeByDefault>true</activeByDefault>-->
+            <!--</activation>-->
+        </profile>
+        <profile>
+            <!-- 分库分表+主从读写分离 -->
+            <id>sharding-slave</id>
+            <properties>
+                <dir>sharding-slave</dir>
+            </properties>
+        </profile>
+
+
+    </profiles>
 
     <build>
         <plugins>
@@ -69,6 +90,15 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/profiles/${dir}</directory>
+            </resource>
+        </resources>
     </build>
 
 
