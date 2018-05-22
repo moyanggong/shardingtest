@@ -5,6 +5,8 @@ import com.cyh.shardingtest.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -19,5 +21,13 @@ public class StudentServiceImpl implements StudentService {
 
     public void addStudent(Student student) {
         studentDAO.insert(student);
+    }
+
+    public List<Student> getAllStudent() {
+        return studentDAO.selectAll();
+    }
+
+    public List<Student> getStudentByPage(int offset, int limit) {
+        return studentDAO.selectByPage(offset,limit);
     }
 }

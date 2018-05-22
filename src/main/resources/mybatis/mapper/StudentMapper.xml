@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cyh.shardingtest.dao.StudentDAO">
     <resultMap id="student" type="com.cyh.shardingtest.model.Student">
-        <id column="id" jdbcType="BIGINT" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="age" jdbcType="SMALLINT" property="age" />
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
         <result column="hobby" jdbcType="VARCHAR" property="hobby" />
-        <result column="stu_id" jdbcType="BIGINT" property="stuId" />
+        <result column="student_id" jdbcType="BIGINT" property="studentId" />
         <result column="city_id" jdbcType="INTEGER" property="cityId" />
     </resultMap>
 
@@ -23,14 +23,15 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="studentId" parameterType="com.cyh.shardingtest.model.Student">
         INSERT INTO t_student (
-          name,age,hobby,city_id
+          name,age,hobby,city_id,sex
         )
         VALUES (
 
         #{name,jdbcType=VARCHAR},
         #{age,jdbcType=SMALLINT},
         #{hobby,jdbcType=VARCHAR},
-        #{cityId,jdbcType=INTEGER}
+        #{cityId,jdbcType=INTEGER},
+        #{sex,jdbcType=TINYINT}
         )
     </insert>
     <!--<delete id="delete">-->
@@ -39,5 +40,14 @@
 
     <select id="query" parameterType="long" resultMap="student">
         SELECT id,name,age,hobby,stu_id FROM t_student WHERE stu_id = #{id}
+    </select>
+
+    <select id="selectAll" resultMap="student">
+        SELECT name,age,hobby,student_id,city_id FROM t_student
+    </select>
+
+
+    <select id="selectByPage" resultMap="student">
+        SELECT name,age,hobby,student_id,city_id FROM t_student ORDER BY age DESC LIMIT #{offset},#{limit}
     </select>
 </mapper>

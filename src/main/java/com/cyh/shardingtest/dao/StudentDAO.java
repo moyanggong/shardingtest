@@ -3,6 +3,7 @@ package com.cyh.shardingtest.dao;
 
 import com.cyh.shardingtest.model.Student;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -32,4 +33,8 @@ public interface StudentDAO {
      * 删除
      */
     public void delete(Student stu);
+
+    public List<Student> selectAll();
+
+    public List<Student> selectByPage(@Param("offset")int offset,@Param("limit")int limit);
 }
