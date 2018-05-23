@@ -16,25 +16,25 @@ public interface StudentDAO {
     /**
      * 分页查找
      */
-    public List<Student> pageQuery(Map queryParam);
+     List<Student> pageQuery(Map queryParam);
 
-    public Student query(long id);
+     Student query(long id);
 
     /**
      * 插入
      */
-    public void insert(Student stu);
+     void insert(Student stu);
     /**
      * 更新
      */
-    public void update(Student stu);
+     void update(Student stu);
 
     /**
      * 删除
      */
-    public void delete(Student stu);
+     void delete(Student stu);
 
-    public List<Student> selectAll();
+     List<Student> selectAll();
 
-    public List<Student> selectByPage(@Param("offset")int offset,@Param("limit")int limit);
+     List<Student> selectByPage(@Param("offset")int offset,@Param("limit")int limit);
 }
