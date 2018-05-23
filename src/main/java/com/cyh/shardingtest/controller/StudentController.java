@@ -29,6 +29,8 @@ public class StudentController {
         return studentService.getAllStudent();
     }
 
+
+    /** 分页*/
     @GetMapping(value = "page")
     public List<Student> getStudentByPage(@RequestParam("offset")int offset,@RequestParam("limit")int limit){
         return studentService.getStudentByPage(offset,limit);
